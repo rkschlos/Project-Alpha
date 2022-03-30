@@ -17,7 +17,8 @@
             </thead>
             <tbody>
                 {% for project in project_list %}
-                <td>{{project.name}}</td>
+                <td> <a href="{%url "show_project" project.pk %}">{{ project.name }}</a></td>
+                <td>{{project.tasks.all|length}}
                 {% endfor %}
             </tbody>
         </table>
