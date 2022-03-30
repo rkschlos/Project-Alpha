@@ -24,11 +24,11 @@
                 <td>{{ task.due_date }}</td>              
                 <td>
                 {% if task.is_completed == False %}
-                <form method="post" action="{% url 'complete_task' task.id %}">
+                    <form method="post" action="{% url 'complete_task' task.id %}">
                     {% csrf_token %}
                     <input type="hidden" name="is_completed" value="True">
                     <button>Complete</button>
-                </form>
+                    </form>
                 {% else %}
                 Done
                 {% endif %}
