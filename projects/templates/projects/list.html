@@ -18,8 +18,10 @@
             </thead>
             <tbody>
                 {% for project in project_list %}
+                <tr>
                 <td> <a href="{%url "show_project" project.pk %}">{{ project.name }}</a></td>
                 <td>{{project.tasks.all|length}}
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
