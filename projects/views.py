@@ -37,5 +37,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
         item = form.save(commit=False)
         item.auth_User = self.request.user
         item.save()
-        form.save_m2m()
+        form.save_m2m()  # saves many to many relationships
         return redirect("show_project", pk=item.id)
+
+        # many projects for many members?
