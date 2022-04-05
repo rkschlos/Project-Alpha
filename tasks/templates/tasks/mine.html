@@ -11,8 +11,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Start date</th>
-                            <th>End date</th>
+                            <th>Goal Time</th>
                             <th>Is completed</th>
                         </tr>
                     </thead>
@@ -20,8 +19,7 @@
                         {% for task in task_list %}
                             <tr>
                                 <td>{{ task.name }}</td>
-                                <td>{{ task.start_date  }}</td>
-                                <td>{{ task.due_date }}</td>
+                                <td>{{ task.goal_time  }}</td>
                                 <td>
                                     {% if task.is_completed == False %}
                                         <form method="post" action="{% url 'complete_task' task.id %}">

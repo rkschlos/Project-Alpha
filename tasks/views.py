@@ -15,8 +15,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     template_name = "tasks/create.html"
     fields = [
         "name",
-        "start_date",
-        "due_date",
+        "goal_time",
         "project",
         "assignee",
     ]
