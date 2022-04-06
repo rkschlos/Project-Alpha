@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
     <main>
         <div>
-            <h1>Create a new practice priority</h1>
+            <h1>Delete Task</h1>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button>Create</button>
+                <button>Delete</button>
             </form>
         </div>
     </main>

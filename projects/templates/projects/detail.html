@@ -15,18 +15,14 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Assignee</th>
-                            <th>Start date</th>
-                            <th>Due date</th>
+                            <th>Goal Time</th>
                             <th>Is completed</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for task in project.tasks.all %}
                             <td>{{ task.name }}</td>
-                            <td>{{ task.assignee }}</td>
-                            <td>{{ task.start_date }}</td>
-                            <td>{{ task.due_date }}</td>
+                            <td>{{ task.goal_time }}</td>
                             {% if task.is_completed == True %}
                                 <td>yes</td>
                             {% else %}

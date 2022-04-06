@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["localhost"]
 
 INSTALLED_APPS = [
     "markdownify.apps.MarkdownifyConfig",
+    "keys.apps.KeysConfig",
     "accounts.apps.AccountsConfig",
     "projects.apps.ProjectsConfig",
     "tasks.apps.TasksConfig",

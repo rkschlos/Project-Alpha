@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -17,15 +17,13 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
         "name",
         "goal_time",
         "project",
-        "assignee",
     ]
-    success_url = reverse_lazy("show_project")
 
     def form_valid(self, form):
         item = form.save(commit=False)
         item.assignee = self.request.user
         item.save()
-        return redirect("show_project", pk=item.id)
+        return redirect("show_project", pk=item.project.id)
 
 
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
@@ -43,3 +41,9 @@ class TaskListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Task.objects.filter(assignee=self.request.user)
+
+
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
+    model = Task
+    template_name = "tasks/delete.html"
+    success_url = reverse_lazy("show_my_tasks")

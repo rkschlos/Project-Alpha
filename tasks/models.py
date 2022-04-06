@@ -5,7 +5,7 @@ from django.db import models
 class Task(models.Model):
     name = models.CharField(max_length=200)
     is_completed = models.BooleanField(default=False)
-    goal_time = models.CharField(max_length=100, default="SOME_STRING")
+    goal_time = models.CharField(max_length=100, default="None Specified")
     project = models.ForeignKey(
         "projects.Project", related_name="tasks", on_delete=models.CASCADE
     )
