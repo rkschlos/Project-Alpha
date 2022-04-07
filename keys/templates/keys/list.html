@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <main>
+        <div class = "project-list">
+            <h1>Keys Practiced</h1>
+            <p><a href="{%url "create_key" %}">Add a new key you've practiced</a></p>
+            {% if key_list|length == 0 %}
+                <p>You haven't listed any scale keys</p>
+            {% else %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Key Name</th>
+                            <th>Date</th>
+                            <th>Tempo</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key in key_list %}
+                            <tr>
+                                <td> {{ key.name }} </td>
+                                <td>{{ key.date }}</td>
+                                <td>{{ key.tempo }}</td>
+                                <td>{{ key.notes }}</td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </main>
+
+{% endblock content %}

@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
     <main>
-        <div class = "task-form">
-            <h1>Create a new task</h1>
+        <div>
+            <h1>Add scale key</h1>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button>Create</button>
+                <button>Add Key</button>
             </form>
         </div>
     </main>

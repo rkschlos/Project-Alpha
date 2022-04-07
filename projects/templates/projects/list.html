@@ -3,16 +3,18 @@
 {% block content %}
 
     <main>
-        <div>
-            <h1>Practice Priorities</h1>
-            <p><a href="{%url "create_project" %}">Create a new priority</a></p>
+        <div class = "project-list">
+            <h1>Practice schedule</h1>
+            <p><a href="{%url "create_project" %}">Create a new category</a></p>
             {% if project_list|length == 0 %}
-                <p>You haven't listed any practice priorities</p>
+                <p>You haven't listed any categories</p>
             {% else %}
                 <table>
                     <thead>
                         <tr>
-                            <th>Goal</th>
+                            <th>Schedule</th>
+                            <th>Description</th>
+                            <th>Time Goal</th>
                             <th>Number of tasks</th>
                         </tr>
                     </thead>
@@ -20,6 +22,8 @@
                         {% for project in project_list %}
                             <tr>
                                 <td> <a href="{%url "show_project" project.pk %}">{{ project.name }}</a></td>
+                                <td>{{project.description}}</td>
+                                <td>{{project.goal_time}}</td>
                                 <td>{{project.tasks.all|length}}
                                 </tr>
                         {% endfor %}

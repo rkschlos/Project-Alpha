@@ -1,4 +1,5 @@
-from django.shortcuts import redirect
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
@@ -28,7 +29,7 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
     template_name = "projects/create.html"
-    fields = ["name", "description", "members"]
+    fields = ["name", "description", "goal_time", "members"]
     success_url = reverse_lazy("show_project")
 
     # very unsure about part below. Wasn't sure how to
@@ -42,3 +43,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
         return redirect("show_project", pk=item.id)
 
         # many projects for many members?
+
+
+def metronome(request):
+    return render(request, "projects/metronome.html")

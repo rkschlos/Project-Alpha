@@ -2,22 +2,24 @@
 
 {% block content %}
     <main>
-        <div>
-            <h1>My Tasks</h1>
+        <div class = "my-tasks-list">
+            <h2>My Practice Tasks</h2>
             {% if task_list|length == 0 %}
                 <p>You have no tasks</p>
             {% else %}
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Task Name</th>
                             <th>Goal Time</th>
-                            <th>Is completed</th>
+                            <th>Complete?</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for task in task_list %}
                             <tr>
+                                <td>{{ task.project.name }}</td>
                                 <td>{{ task.name }}</td>
                                 <td>{{ task.goal_time  }}</td>
                                 <td>
@@ -36,6 +38,10 @@
                     </tbody>
                 </table>
             {% endif %}
+        </div>
+        <div style = "text-align:center;
+        padding-top: 30px;">
+            <iframe src="https://beepmyclock.com/widget/stopwatch" frameborder="0" style="border:0;height:130px;"></iframe>>
         </div>
     </main>
 

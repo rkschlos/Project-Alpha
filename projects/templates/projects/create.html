@@ -2,8 +2,8 @@
 
 {% block content %}
     <main>
-        <div>
-            <h1>Create a new practice priority</h1>
+        <div class = "project-form">
+            <h1>Create a new practice category</h1>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}

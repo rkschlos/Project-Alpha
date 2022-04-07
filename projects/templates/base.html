@@ -1,21 +1,30 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}">
     <title>Document</title>
 </head>
 <body>
-    <header>
+    <header> 
             <nav>
                 <ul>
                     {% if user.is_authenticated %}
                     <li>
-                        <a href="{% url "show_my_tasks" %}">My Task List</a>
+                        <a href="{% url "show_my_tasks" %}">Tasks</a>
                     </li>
                     <li>
-                        <a href="{% url "list_projects" %}">My Practice List</a>
+                        <a href="{% url "list_keys" %}">Scale Key Tracker</a>
+                    </li>
+                    <li>
+                        <a href="{% url "metronome" %}">Metronome</a>
+                    </li>
+                    <li>
+                        <a href="{% url "list_projects" %}">Practice Schedule</a>
                     </li>
                     <li>
                         <a href="{% url "logout" %}">Logout</a>
@@ -30,6 +39,7 @@
                     {% endif %}
                 </ul>
             </nav>
+            <h1 style= "color:#EF476F; text-align: center; font-size: 40px; font-weight:700;";>PracticePal</h1>
     </header>
         {% block content %}
         {% endblock content %}  
