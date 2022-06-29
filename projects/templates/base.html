@@ -15,16 +15,16 @@
                 <ul>
                     {% if user.is_authenticated %}
                     <li>
-                        <a href="{% url "show_my_tasks" %}">Tasks</a>
+                        <a href="{% url "show_my_tasks" %}">My Tasks</a>
+                    </li>
+                    <li>
+                        <a href="{% url "list_projects" %}">Practice Schedule</a>
                     </li>
                     <li>
                         <a href="{% url "list_keys" %}">Scale Key Tracker</a>
                     </li>
                     <li>
                         <a href="{% url "metronome" %}">Metronome</a>
-                    </li>
-                    <li>
-                        <a href="{% url "list_projects" %}">Practice Schedule</a>
                     </li>
                     <li>
                         <a href="{% url "logout" %}">Logout</a>

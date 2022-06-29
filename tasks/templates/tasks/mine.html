@@ -1,48 +1,62 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <main>
-        <div class = "my-tasks-list">
-            <h2>My Practice Tasks</h2>
-            {% if task_list|length == 0 %}
-                <p>You have no tasks</p>
-            {% else %}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Task Name</th>
-                            <th>Goal Time</th>
-                            <th>Complete?</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for task in task_list %}
-                            <tr>
-                                <td>{{ task.project.name }}</td>
-                                <td>{{ task.name }}</td>
-                                <td>{{ task.goal_time  }}</td>
-                                <td>
-                                    {% if task.is_completed == False %}
-                                        <form method="post" action="{% url 'complete_task' task.id %}">
-                                            {% csrf_token %}
-                                            <input type="hidden" name="is_completed" value="True">
-                                            <button>Complete</button>
-                                        </form>
-                                    {% else %}
-                                        Done
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% endif %}
-        </div>
-        <div style = "text-align:center;
-        padding-top: 30px;">
-            <iframe src="https://beepmyclock.com/widget/stopwatch" frameborder="0" style="border:0;height:130px;"></iframe>>
-        </div>
-    </main>
+{% extends 'base.html' %} {% block content %}
+<main>
+  <div class="my-tasks-list">
+    <h2>My Practice Tasks</h2>
+    {% if task_list|length == 0 %}
+    <p>You have no tasks</p>
+    {% else %}
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Task Name</th>
+          <th>Goal Time</th>
+          <th>Complete?</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in task_list %}
+        <tr>
+          <td>{{ task.project.name }}</td>
+          <td>{{ task.name }}</td>
+          <td>{{ task.goal_time }}</td>
+          <td>
+            {% if task.is_completed == False %}
+            <form method="post" action="{% url 'complete_task' task.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="is_completed" value="True" />
+              <button>Complete</button>
+            </form>
+            {% else %} Done {% endif %}
+          </td>
+          <td>
+            <form method="post" action="{% url 'delete_task' task.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="delete" value="True" />
+              <button>&#10006;</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p style="padding-top: 15px">
+      <i
+        >Assign more tasks through your
+        <a href="/projects/">practice schedule</a></i
+      >
+    </p>
+    {% endif %}
+  </div>
+  <div style="text-align: center; padding-top: 30px">
+    <iframe
+      src="https://beepmyclock.com/widget/stopwatch"
+      frameborder="0"
+      style="border: 0; height: 130px"
+    ></iframe
+    >>
+  </div>
+</main>
 
 {% endblock content %}

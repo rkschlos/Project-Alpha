@@ -1,8 +1,7 @@
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -42,7 +41,11 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
         form.save_m2m()  # saves many to many relationships
         return redirect("show_project", pk=item.id)
 
-        # many projects for many members?
+
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
+    model = Project
+    template_name = "project/delete.html"
+    success_url = reverse_lazy("list_projects")
 
 
 def metronome(request):

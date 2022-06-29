@@ -13,11 +13,7 @@ from tasks.models import Task
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     template_name = "tasks/create.html"
-    fields = [
-        "name",
-        "goal_time",
-        "project",
-    ]
+    fields = ["name", "goal_time", "project"]
 
     def form_valid(self, form):
         item = form.save(commit=False)

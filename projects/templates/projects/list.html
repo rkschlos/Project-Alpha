@@ -4,18 +4,19 @@
 
     <main>
         <div class = "project-list">
-            <h1>Practice schedule</h1>
-            <p><a href="{%url "create_project" %}">Create a new category</a></p>
+            <h1 style="text-align: center">Practice schedule</h1>
+            <p style="text-align: center"><a href="{%url "create_project" %}">Create a new category</a></p>
             {% if project_list|length == 0 %}
                 <p>You haven't listed any categories</p>
             {% else %}
                 <table>
                     <thead>
                         <tr>
-                            <th>Schedule</th>
+                            <th>Category-<i> click to add tasks</i></th>
                             <th>Description</th>
                             <th>Time Goal</th>
                             <th>Number of tasks</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,7 +25,14 @@
                                 <td> <a href="{%url "show_project" project.pk %}">{{ project.name }}</a></td>
                                 <td>{{project.description}}</td>
                                 <td>{{project.goal_time}}</td>
-                                <td>{{project.tasks.all|length}}
+                                <td>{{project.tasks.all|length}}</td>
+                                <td>
+                                    <form method="post" action="{% url 'delete_project' project.id %}">
+                                      {% csrf_token %}
+                                      <input type="hidden" name="delete" value="True" />
+                                      <button>X</button>
+                                    </form>
+                                  </td>
                                 </tr>
                         {% endfor %}
                     </tbody>

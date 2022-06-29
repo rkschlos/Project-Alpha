@@ -16,6 +16,7 @@
                             <th>Date</th>
                             <th>Tempo</th>
                             <th>Notes</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,12 +26,20 @@
                                 <td>{{ key.date }}</td>
                                 <td>{{ key.tempo }}</td>
                                 <td>{{ key.notes }}</td>
+                                <td>
+                                    <form method="post" action="{% url 'delete_key' key.id %}">
+                                      {% csrf_token %}
+                                      <input type="hidden" name="delete" value="True" />
+                                      <button>X</button>
+                                    </form>
+                                  </td>
                                 </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             {% endif %}
         </div>
+
     </main>
 
 {% endblock content %}

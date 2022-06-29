@@ -7,3 +7,7 @@ class Project(models.Model):
     description = models.TextField()
     members = models.ManyToManyField("auth.User", related_name="projects")
     goal_time = models.CharField(max_length=100, default="None specified")
+
+    def __str__(self):
+        name = self.name
+        return name
